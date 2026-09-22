@@ -1,21 +1,25 @@
-name:CI Automation Test
+name: CI Automation Test
+
 on:
- push:
-  branches:
-   -"**"
- pull request:
-  branches:
-   -main
-  jobs:
-   test:
-     runs-on:ubuntu_latest
-     steps:
-        -name:Checkout code
-         uses:actions/checkout@v4
-        -name:Setup Node.js
-         uses:actions/setup-node@v4
-     with:
-         node-version:20
-         cache:'npm'
-        -name:Install dependencies
-         run:npm install
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
